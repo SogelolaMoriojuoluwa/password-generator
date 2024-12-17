@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+        }
+        .form {
+            width: 400px;
+            background-color: wheat;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 6px 6px 5px rgb(21, 152, 185);
+            /* height: 400px; */
+        }
+        .suggest {
+            border: 2px solid transparent;
+            background-color: white;
+            border-radius: 10px;
+            display: none;
+            
+        }
+       
+    </style>
+</head>
+<body class="d-flex align-items-center justify-content-center vh-100">
+    <div class="container form">
+        <form id="user-form">
+            <div>
+                <label for="full-name">Full Name</label>
+                <input type="text" class="form-control mt-2" id="full-name"> 
+              </div>
+              <div>
+                <label for="password">Password</label>
+                <input type="text" class="form-control mt-2" id="password"> 
+                </div>
+
+                <div class="suggest mt-3">
+                    <div class="p-2">Suggest a password?</div>
+                    <div class="p-2">
+                        <button class="btn btn-primary btn-sm me-1" id="yes-btn">Yes</button>
+                        <button class="btn btn-primary btn-sm" id="no-btn">No</button>
+                    </div>             
+                   
+                </div>
+                    <button type="submit" class="btn btn-success w-100 mt-4" id="submit-btn">Submit</button>
+            
+        </div>
+
+        </form>
+          
+    
+
+
+    <script>
+        const passwordInput = document.getElementById("password");
+        const fullName = document.getElementById("full-name");
+        const suggestAlert = document.querySelector(".suggest");
+        const yesButton = document.getElementById("yes-btn");
+        const noButton = document.getElementById("no-btn");
+        const form = document.getElementById("user-form")
+        const sumbitBtn = document.getElementById("submit-btn")
+
+        passwordInput.addEventListener("focus", () => {
+            suggestAlert.style.display = "flex"; 
+        });
+
+        passwordInput.addEventListener("blur", () => {
+            setTimeout(()=> {
+                suggestAlert.style.display = "none"; 
+            },300)
+           
+        });
+
+        yesButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            const suggestedPassword = generatePassword();
+            console.log("suggestPassword")
+            passwordInput.value = suggestedPassword; 
+            suggestAlert.style.display = "none"; 
+           
+        });
+
+        noButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            suggestAlert.style.display = "none"; 
+            passwordInput.value = ""; 
+            passwordInput.focus(); 
+          
+        });
+
+        
+        function generatePassword(){
+            let characters = "ABCDEFGHIJKLMNOPQRSTUWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()1234567890_-"
+            let password = "";
+            for (let i = 0; i <12; i++){
+                const randomCharacter = Math.floor(Math.random() * characters.length)
+                password += characters[randomCharacter];
+            }
+            return password;
+
+        }
+
+        form.addEventListener("submit", function(e){
+            e.preventDefault()
+            if (fullName.value.trim() === "" || passwordInput.value.trim() === "") {
+                alert("Please fill in all the inputs.");
+            } else {
+                alert("Form submitted successfully!");
+            }
+        });
+        console.log("Script loaded");
+    </script>
+</body>
+</html>
