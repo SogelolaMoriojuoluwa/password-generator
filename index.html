@@ -7,14 +7,14 @@
     <title>Password</title>
     <style>
         body {
-            background-color: whitesmoke;
+            background-color: #e0e0e0;
         }
         .form {
             width: 400px;
-            background-color: wheat;
+            background-color: #2f4f4f;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 6px 6px 5px rgb(21, 152, 185);
+            /* box-shadow: 6px 6px 5px  #ffeb3b; */
             /* height: 400px; */
         }
         .suggest {
@@ -31,11 +31,11 @@
     <div class="container form">
         <form id="user-form">
             <div>
-                <label for="full-name">Full Name</label>
+                <label for="full-name" class="text-white">Full Name</label>
                 <input type="text" class="form-control mt-2" id="full-name"> 
               </div>
-              <div>
-                <label for="password">Password</label>
+              <div> 
+                <label for="password" class="text-white">Password</label>
                 <input type="text" class="form-control mt-2" id="password"> 
                 </div>
 
@@ -47,7 +47,7 @@
                     </div>             
                    
                 </div>
-                    <button type="submit" class="btn btn-success w-100 mt-4" id="submit-btn">Submit</button>
+                    <button type="submit" class="btn btn-secondary w-100 mt-4" id="submit-btn">Submit</button>
             
         </div>
 
